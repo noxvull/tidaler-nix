@@ -19,7 +19,7 @@ on:
 
 env:
   ASSET_EXTENSION: ".zip"
-  OUT_NAME_FILE: "TIDAL-Downloader-NG"
+  OUT_NAME_FILE: "tidaler"
   ARCH_MACOS_X64: "macos-x64"
   ARCH_MACOS_ARM64: "macos-arm64"
   ARCH_LINUX_X64: "linux-x64"

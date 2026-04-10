@@ -39,8 +39,8 @@
 # nuitka-project: --include-data-files={MAIN_DIRECTORY}/ui/icon*=tidaler/ui/
 # nuitka-project: --include-data-files={MAIN_DIRECTORY}/ui/default_album_image.png=tidaler/ui/default_album_image.png
 # nuitka-project: --include-data-files=./pyproject.toml=pyproject.toml
-# nuitka-project: --force-stderr-spec="{TEMP}/tidal-dl-ng.err.log"
-# nuitka-project: --force-stdout-spec="{TEMP}/tidal-dl-ng.out.log"
+# nuitka-project: --force-stderr-spec="{TEMP}/tidaler.err.log"
+# nuitka-project: --force-stdout-spec="{TEMP}/tidaler.out.log"
 # nuitka-project: --company-name=exislow
 
 

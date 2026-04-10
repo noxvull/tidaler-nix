@@ -17,8 +17,8 @@ requires-python = ">=3.12,<3.14"
 dynamic = ["dependencies"]
 
 [project.urls]
-repository = "https://github.com/maya-doshi/tidal-dl-ng"
-documentation = "https://exislow.github.io/tidal-dl-ng/"
+repository = "https://github.com/maya-doshi/tidaler"
+documentation = "https://github.com/maya-doshi/tidaler"
 
 [project.scripts]
 tidaler = "tidaler.cli:app"

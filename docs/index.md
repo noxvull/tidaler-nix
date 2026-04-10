@@ -1,8 +1,8 @@
-# tidal-dl-ng
+# tidaler
 
-[![Release](https://img.shields.io/github/v/release/exislow/tidal-dl-ng)](https://img.shields.io/github/v/release/exislow/tidal-dl-ng)
-[![Build status](https://img.shields.io/github/actions/workflow/status/exislow/tidal-dl-ng/main.yml?branch=main)](https://github.com/exislow/tidal-dl-ng/actions/workflows/main.yml?query=branch%3Amain)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/exislow/tidal-dl-ng)](https://img.shields.io/github/commit-activity/m/exislow/tidal-dl-ng)
-[![License](https://img.shields.io/github/license/exislow/tidal-dl-ng)](https://img.shields.io/github/license/exislow/tidal-dl-ng)
+[![Release](https://img.shields.io/github/v/release/maya-doshi/tidaler)](https://img.shields.io/github/v/release/maya-doshi/tidaler)
+[![Build status](https://img.shields.io/github/actions/workflow/status/maya-doshi/tidaler/release-or-test-build.yml)](https://github.com/maya-doshi/tidaler/actions/workflows/release-or-test-build.yml)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/maya-doshi/tidaler)](https://img.shields.io/github/commit-activity/m/maya-doshi/tidaler)
+[![License](https://img.shields.io/github/license/maya-doshi/tidaler)](https://img.shields.io/github/license/maya-doshi/tidaler)
 
-tidal-dl-ng
+tidaler

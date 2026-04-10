@@ -207,7 +207,7 @@
    <item>
     <widget class="QLabel" name="l_url_github">
      <property name="text">
-      <string>&lt;a href=&quot;https://github.com/exislow/tidal-dl-ng/&quot;&gt;https://github.com/exislow/tidal-dl-ng/&lt;/a&gt;</string>
+      <string>&lt;a href=&quot;https://github.com/maya-doshi/tidaler/&quot;&gt;https://github.com/maya-doshi/tidaler/&lt;/a&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

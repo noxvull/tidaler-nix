@@ -570,7 +570,7 @@ class Ui_MainWindow:
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", "MainWindow", None))
         self.a_version.setText(QCoreApplication.translate("MainWindow", "Version", None))
-        self.a_exit.setText(QCoreApplication.translate("MainWindow", "Quit TIDAL-Downloader-NG", None))
+        self.a_exit.setText(QCoreApplication.translate("MainWindow", "Quit tidaler", None))
         self.a_logout.setText(QCoreApplication.translate("MainWindow", "Logout", None))
         self.a_updates_check.setText(QCoreApplication.translate("MainWindow", "Check for Updates", None))
         ___qtreewidgetitem = self.tr_lists_user.headerItem()

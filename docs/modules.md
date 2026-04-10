@@ -1,1 +1,1 @@
-::: tidal-dl-ng
+::: tidaler

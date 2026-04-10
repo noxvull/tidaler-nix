@@ -1,4 +1,4 @@
-APP_NAME = "TIDAL-Downloader-NG"
+APP_NAME = "TIDALER"
 APP_VERSION=`grep -m 1 'version =' pyproject.toml | tr -s ' ' | tr -d '"' | tr -d "'" | cut -d' ' -f3`
 app_path_dist = "dist"
 path_asset = "tidaler/ui"
