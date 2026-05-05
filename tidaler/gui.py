@@ -36,8 +36,8 @@
 # nuitka-project: --noinclude-dlls=libQt6Sensors*
 # nuitka-project: --noinclude-dlls=libQt6Test*
 # nuitka-project: --noinclude-dlls=libQt6WebEngine*
-# nuitka-project: --include-data-files={MAIN_DIRECTORY}/ui/icon*=tidaler/ui/
-# nuitka-project: --include-data-files={MAIN_DIRECTORY}/ui/default_album_image.png=tidaler/ui/default_album_image.png
+# nuitka-project: --include-data-files={MAIN_DIRECTORY}/ui/icon*=ui/
+# nuitka-project: --include-data-files={MAIN_DIRECTORY}/ui/default_album_image.png=ui/default_album_image.png
 # nuitka-project: --include-data-files=./pyproject.toml=pyproject.toml
 # nuitka-project: --force-stderr-spec="{TEMP}/tidaler.err.log"
 # nuitka-project: --force-stdout-spec="{TEMP}/tidaler.out.log"
@@ -284,7 +284,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def _init_info(self):
         """Set default album cover image in the GUI."""
-        path_image: str = resource_path("tidaler/ui/default_album_image.png")
+        path_image: str = resource_path("ui/default_album_image.png")
 
         self.l_pm_cover.setPixmap(QtGui.QPixmap(path_image))
 
@@ -2058,7 +2058,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 pixmap.loadFromData(data_cover)
                 self.l_pm_cover.setPixmap(pixmap)
             elif not cover_url:
-                path_image: str = resource_path("tidaler/ui/default_album_image.png")
+                path_image: str = resource_path("ui/default_album_image.png")
                 self.l_pm_cover.setPixmap(QtGui.QPixmap(path_image))
         finally:
             self.s_spinner_stop.emit()
@@ -2595,12 +2595,12 @@ def gui_activate(tidal: Tidal | None = None):
     # Create icon object and apply it to app window.
     icon: QtGui.QIcon = QtGui.QIcon()
 
-    icon.addFile("tidaler/ui/icon16.png", QtCore.QSize(16, 16))
-    icon.addFile("tidaler/ui/icon32.png", QtCore.QSize(32, 32))
-    icon.addFile("tidaler/ui/icon48.png", QtCore.QSize(48, 48))
-    icon.addFile("tidaler/ui/icon64.png", QtCore.QSize(64, 64))
-    icon.addFile("tidaler/ui/icon256.png", QtCore.QSize(256, 256))
-    icon.addFile("tidaler/ui/icon512.png", QtCore.QSize(512, 512))
+    icon.addFile("ui/icon16.png", QtCore.QSize(16, 16))
+    icon.addFile("ui/icon32.png", QtCore.QSize(32, 32))
+    icon.addFile("ui/icon48.png", QtCore.QSize(48, 48))
+    icon.addFile("ui/icon64.png", QtCore.QSize(64, 64))
+    icon.addFile("ui/icon256.png", QtCore.QSize(256, 256))
+    icon.addFile("ui/icon512.png", QtCore.QSize(512, 512))
     app.setWindowIcon(icon)
 
     # This bit gets the taskbar icon working properly in Windows
