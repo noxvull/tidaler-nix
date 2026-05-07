@@ -22,6 +22,7 @@ from uuid import uuid4
 import m3u8
 import requests
 from ffmpeg import FFmpeg
+from mutagen.flac import FLAC
 from pathvalidate import sanitize_filename
 from requests.adapters import HTTPAdapter, Retry
 from requests.exceptions import HTTPError
@@ -50,6 +51,7 @@ from tidaler.constants import (
     REQUESTS_TIMEOUT_SEC,
     AudioExtensionsValid,
     CoverDimensions,
+    DownsampleTarget,
     MediaType,
     MetadataTargetUPC,
     QualityVideo,
@@ -1002,6 +1004,14 @@ class Download:
             if isinstance(media, Track) and self.settings.data.extract_flac and do_flac_extract:
                 tmp_path_file = self._extract_flac(tmp_path_file)
 
+            # Downsample FLAC to the configured target rate/depth (no-op for low-res sources)
+            if (
+                isinstance(media, Track)
+                and self.settings.data.downsample_enabled
+                and tmp_path_file.suffix == AudioExtensions.FLAC
+            ):
+                tmp_path_file = self._downsample_audio(tmp_path_file)
+
             # Handle metadata, lyrics, and cover
             self._handle_metadata_and_extras(media, tmp_path_file, path_media_dst, is_parent_album, media_stream)
 
@@ -1769,6 +1779,64 @@ class Download:
         ffmpeg.execute()
 
         return path_media_out
+
+    def _downsample_audio(self, path_file: pathlib.Path) -> pathlib.Path:
+        """Downsample a FLAC file toward the configured target rate/depth using ffmpeg.
+
+        Each dimension (sample rate, bit depth) is reduced independently and
+        never upsampled — a 24/44.1 source with a 16/48 target becomes 16/44.1.
+        Returns the original path if neither dimension needs to change.
+        """
+        target = DownsampleTarget(self.settings.data.downsample_target)
+        target_rate = target.sample_rate
+        target_depth = target.bit_depth
+
+        info = FLAC(path_file).info
+        src_rate = info.sample_rate
+        src_depth = info.bits_per_sample
+
+        out_rate = min(src_rate, target_rate)
+        out_depth = min(src_depth, target_depth)
+
+        if out_rate == src_rate and out_depth == src_depth:
+            self.fn_logger.info(
+                f"Downsample skipped: source {src_depth}-bit/{src_rate} Hz "
+                f"already at-or-below target {target_depth}-bit/{target_rate} Hz."
+            )
+            return path_file
+
+        self.fn_logger.info(
+            f"Downsampling {src_depth}-bit/{src_rate} Hz -> {out_depth}-bit/{out_rate} Hz "
+            f"(target {target_depth}-bit/{target_rate} Hz)."
+        )
+
+        path_out = path_file.with_name(path_file.stem + ".ds" + path_file.suffix)
+        sample_fmt = "s16" if out_depth == 16 else "s32"
+
+        output_kwargs: dict = {
+            "ar": out_rate,
+            "sample_fmt": sample_fmt,
+            "acodec": "flac",
+            "map_metadata": "0",
+            "loglevel": "quiet",
+        }
+        if out_depth == 24:
+            # ffmpeg's FLAC encoder needs s32 + an explicit bits_per_raw_sample
+            # to mark the stream as 24-bit; otherwise it'll be tagged as 32-bit.
+            output_kwargs["bits_per_raw_sample"] = 24
+
+        ffmpeg = (
+            FFmpeg(executable=self.settings.data.path_binary_ffmpeg)
+            .option("y")
+            .option("hide_banner")
+            .option("nostdin")
+            .input(url=path_file)
+            .output(url=path_out, **output_kwargs)
+        )
+        ffmpeg.execute()
+
+        path_file.unlink()
+        return path_out
 
     def _extract_video_stream(self, m3u8_variant: m3u8.M3U8, quality: int) -> tuple[m3u8.M3U8 | bool, str]:
         """Extract the best matching video stream from an m3u8 variant playlist.
