@@ -232,7 +232,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             continue
                         try:
                             token_json = self.tidal.session.pkce_get_auth_token(redirect_url)
-                            self.tidal.session.provess_auth_token(token_json, is_pkce_token=True)
+                            self.tidal.session.process_auth_token(token_json, is_pkce_token=True)
                             self.tidal.login_finalize()
 
                             result = True
