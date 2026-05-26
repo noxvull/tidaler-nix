@@ -94,7 +94,7 @@ class DialogLogin(QtWidgets.QDialog):
         # Run the .setupUi() method to show the GUI
         self.ui.setupUi(self)
         # Set data.
-        self.ui.tb_url_login.setText(f'<a href="https://{url_login}">https://{url_login}</a>')
+        self.ui.tb_url_login.setText(f'<a href="{url_login}">{url_login}</a>')
         self.ui.l_hint.setText(hint)
         # Show dialog and capture user input on accept
         self.return_code = self.exec()
