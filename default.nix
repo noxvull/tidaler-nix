@@ -32,13 +32,14 @@ pythonPackages.buildPythonPackage rec {
       python-ffmpeg
       pycryptodome
       ansi2html
+      ffmpeg
     ]
-    ++ (lib.optionals enableGui [pyside6]);
+    ++ (lib.optionals enableGui [pyside6 pyqtdarktheme]);
 
   pyprojet = true;
   doCheck = false;
-  # because versions of "typer" and "requests" are higher, than specified in pyproject it won't build
-  # skiping check. doesn't cause any issue to have a newer version in this case
+  # because versions of "typer" and "requests" provided by nixpkgs are higher,
+  # than specified in pyproject, it won't build, skiping check doesn't cause any issue in this case
   # https://discourse.nixos.org/t/packaging-python-for-nixpkgs-w-dependency-from-github/40415
   dontCheckRuntimeDeps = true;
 

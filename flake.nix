@@ -16,7 +16,7 @@
 
       callTidaler = {enableGui ? false}:
         pkgs.callPackage ./default.nix {
-          pythonPackages = pkgs.python312Packages;
+          pythonPackages = pkgs.python313Packages;
           inherit enableGui;
         };
     in {
@@ -29,7 +29,7 @@
         packages = [
           pkgs.poetry
           pkgs.ffmpeg
-          (pkgs.python312.withPackages (ps: (callTidaler {enableGui = true;}).dependencies))
+          (pkgs.python313.withPackages (ps: (callTidaler {enableGui = true;}).dependencies))
         ];
       };
     }))
