@@ -1,5 +1,11 @@
 # tidaler! (download from tidal)
 
+This fork is to purely add Nix support for tidler. Provides following:
+1. packages: default (cli) and tidaler-gui (PySide6)
+2. dev shell
+3. home-manager module
+
+----
 fork of tidal_dl_ng by exislow (the original repo and account disappeared). this fork exists to maintain functionality, and add some targeted improvements.
 
 my main focus is the cli. gui support is still included, but i don’t use it, so gui fixes are lower priority. patches are welcome.
