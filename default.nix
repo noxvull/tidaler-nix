@@ -36,15 +36,9 @@ pythonPackages.buildPythonPackage rec {
     ]
     ++ (lib.optionals enableGui [pyside6 pyqtdarktheme]);
 
-  postFixup = ''
-    wrapProgram $out/bin/tidaler \
-      --prefix PATH : ${lib.makeBinPath [pkgs.ffmpeg]}
-
-    if [ -f "$out/bin/tidaler-gui" ]; then
-      wrapProgram $out/bin/tidaler-gui \
-        --prefix PATH : ${lib.makeBinPath [pkgs.ffmpeg]}
-    fi
-  '';
+  makeWrapperArgs = [
+    "--prefix PATH : ${lib.makeBinPath [pkgs.ffmpeg]}"
+  ];
 
   pyprojet = true;
   doCheck = false;
