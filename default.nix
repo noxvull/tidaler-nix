@@ -14,6 +14,8 @@ pythonPackages.buildPythonPackage rec {
     sha256 = "sha256-UM9F07EXdN1G0+iFCX+mjgK0quOkJ93mE88YNj4TjII=";
   };
 
+  nativeBuildInputs = [pkgs.makeWrapper];
+
   build-system = with pythonPackages; [
     poetry-core
   ];
@@ -40,15 +42,12 @@ pythonPackages.buildPythonPackage rec {
     "--prefix PATH : ${lib.makeBinPath [pkgs.ffmpeg]}"
   ];
 
-  # remove gui binarues if gui is off
-  preFixup = lib.optional (!enableGui) [
-    ''
-      rm $out/bin/tdng
-      rm $out/bin/tidaler-gui
-    ''
-  ];
+  # remove gui binaries if gui feature is disabled
+  preFixup = lib.optionalString (!enableGui) ''
+    rm -f $out/bin/tdng
+    rm -f $out/bin/tidaler-gui
+  '';
 
-  pyprojet = true;
   doCheck = false;
   # because versions of "typer" and "requests" provided by nixpkgs are higher,
   # than specified in pyproject, it won't build, skiping check doesn't cause any issue in this case
