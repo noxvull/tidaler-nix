@@ -43,7 +43,7 @@
         cfg = config.programs.tidaler;
       in {
         options.programs.tidaler = {
-          enable = lib.mkEnableOption "TIDAL Downloader CLI/GUI framework";
+          enable = lib.mkEnableOption "TIDAL Downloader (fork of tidal-dl-ng)";
           gui = lib.mkOption {
             type = lib.types.bool;
             default = false;
