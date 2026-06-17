@@ -40,6 +40,14 @@ pythonPackages.buildPythonPackage rec {
     "--prefix PATH : ${lib.makeBinPath [pkgs.ffmpeg]}"
   ];
 
+  # remove gui binarues if gui is off
+  preFixup = lib.optional (!enableGui) [
+    ''
+      rm $out/bin/tdn
+      rm $out/bin/tidaler-gui
+    ''
+  ];
+
   pyprojet = true;
   doCheck = false;
   # because versions of "typer" and "requests" provided by nixpkgs are higher,

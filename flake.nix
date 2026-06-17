@@ -34,7 +34,7 @@
       };
     }))
     // {
-      homeManagerModules.default = {
+      homeModules.default = {
         config,
         lib,
         pkgs,
