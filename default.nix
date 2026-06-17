@@ -43,7 +43,7 @@ pythonPackages.buildPythonPackage rec {
   # remove gui binarues if gui is off
   preFixup = lib.optional (!enableGui) [
     ''
-      rm $out/bin/tdn
+      rm $out/bin/tdng
       rm $out/bin/tidaler-gui
     ''
   ];
