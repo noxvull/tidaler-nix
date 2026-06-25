@@ -40,7 +40,7 @@
       </font>
      </property>
      <property name="text">
-      <string>TIDAL Downloader Next Generation!</string>
+      <string>tidaler</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

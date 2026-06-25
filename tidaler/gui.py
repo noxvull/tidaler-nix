@@ -111,7 +111,7 @@ from tidaler.worker import Worker
 
 # TODO: Make more use of Exceptions
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    """Main application window for TIDAL Downloader Next Generation.
+    """Main application window for tidaler.
 
     Handles GUI setup, user interactions, and download logic.
     """
@@ -158,7 +158,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         super().__init__()
         self.setupUi(self)
-        self.setWindowTitle("TIDAL Downloader Next Generation!")
+        self.setWindowTitle("tidaler")
 
         # Logging redirect.
         XStream.stdout().messageWritten.connect(self._log_output)

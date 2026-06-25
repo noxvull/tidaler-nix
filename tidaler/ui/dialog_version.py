@@ -153,7 +153,7 @@ class Ui_DialogVersion(object):
 
     def retranslateUi(self, DialogVersion):
         DialogVersion.setWindowTitle(QCoreApplication.translate("DialogVersion", u"Version", None))
-        self.l_name_app.setText(QCoreApplication.translate("DialogVersion", u"TIDAL Downloader Next Generation!", None))
+        self.l_name_app.setText(QCoreApplication.translate("DialogVersion", u"tidaler", None))
         self.l_h_version.setText(QCoreApplication.translate("DialogVersion", u"Installed Version:", None))
         self.l_version.setText(QCoreApplication.translate("DialogVersion", u"v1.2.3", None))
         self.l_error.setText(QCoreApplication.translate("DialogVersion", u"ERROR", None))
