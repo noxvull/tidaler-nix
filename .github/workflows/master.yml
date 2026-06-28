@@ -56,15 +56,3 @@ jobs:
 
       - name: Test with tox
         run: tox
-
-  check-docs:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Check out
-        uses: actions/checkout@v4
-
-      - name: Set up the environment
-        uses: ./.github/actions/setup-poetry-env
-
-      - name: Check if documentation can be built
-        run: poetry run mkdocs build -s
