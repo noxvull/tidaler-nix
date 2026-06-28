@@ -208,7 +208,7 @@ class QtWaitingSpinner(QWidget):
         if countDistance == 0:
             return color
         minAlphaF = minOpacity / 100.0
-        distanceThreshold = int(math.ceil((totalNrOfLines - 1) * trailFadePerc / 100.0))
+        distanceThreshold = math.ceil((totalNrOfLines - 1) * trailFadePerc / 100.0)
         if countDistance > distanceThreshold:
             color.setAlphaF(minAlphaF)
         else:

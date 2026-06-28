@@ -1750,7 +1750,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Args:
             value (float): The progress value as a percentage.
         """
-        self.pb_list.setValue(int(math.ceil(value)))
+        self.pb_list.setValue(math.ceil(value))
 
     def on_progress_item(self, value: float) -> None:
         """Update the progress of the item progress bar.
@@ -1758,7 +1758,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Args:
             value (float): The progress value as a percentage.
         """
-        self.pb_item.setValue(int(math.ceil(value)))
+        self.pb_item.setValue(math.ceil(value))
 
     def on_progress_item_name(self, value: str) -> None:
         """Set the format of the item progress bar.
