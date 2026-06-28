@@ -115,8 +115,7 @@ class HelpSettings:
         "left untouched. Useful for capping HI_RES_LOSSLESS downloads at a saner archive size."
     )
     downsample_target: str = (
-        "Downsample target when downsample_enabled is true: "
-        "'16_48' (16 bit / 48 kHz) or '24_48' (24 bit / 48 kHz)."
+        "Downsample target when downsample_enabled is true: " "'16_48' (16 bit / 48 kHz) or '24_48' (24 bit / 48 kHz)."
     )
     downloads_simultaneous_per_track_max: str = "Maximum number of simultaneous chunk downloads per track."
     download_delay_sec_min: str = "Lower boundary for the calculation of the download delay in seconds."
