@@ -111,7 +111,7 @@ from tidaler.worker import Worker
 
 # TODO: Make more use of Exceptions
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    """Main application window for TIDAL Downloader Next Generation.
+    """Main application window for tidaler.
 
     Handles GUI setup, user interactions, and download logic.
     """
@@ -158,7 +158,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         super().__init__()
         self.setupUi(self)
-        self.setWindowTitle("TIDAL Downloader Next Generation!")
+        self.setWindowTitle("tidaler")
 
         # Logging redirect.
         XStream.stdout().messageWritten.connect(self._log_output)
@@ -1750,7 +1750,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Args:
             value (float): The progress value as a percentage.
         """
-        self.pb_list.setValue(int(math.ceil(value)))
+        self.pb_list.setValue(math.ceil(value))
 
     def on_progress_item(self, value: float) -> None:
         """Update the progress of the item progress bar.
@@ -1758,7 +1758,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Args:
             value (float): The progress value as a percentage.
         """
-        self.pb_item.setValue(int(math.ceil(value)))
+        self.pb_item.setValue(math.ceil(value))
 
     def on_progress_item_name(self, value: str) -> None:
         """Set the format of the item progress bar.

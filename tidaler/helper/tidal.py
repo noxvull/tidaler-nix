@@ -24,6 +24,7 @@ def name_builder_artist(media: Track | Video | Album, delimiter: str = ", ") -> 
     """
     return delimiter.join(artist.name for artist in media.artists)
 
+
 def get_album_artists(media: Track | Album) -> [str]:
     artists_tmp: [str] = []
     artists: [Artist] = media.album.artists if isinstance(media, Track) else media.artists
@@ -33,6 +34,7 @@ def get_album_artists(media: Track | Album) -> [str]:
             artists_tmp.append(artist.name)
 
     return artists_tmp
+
 
 def name_builder_album_artist(media: Track | Album, first_only: bool = False, delimiter: str = ", ") -> str:
     """Builds a string of main album artist names for a track or album.
@@ -113,27 +115,31 @@ def url_ending_clean(url: str) -> str:
 def search_results_all(session: Session, needle: str, types_media: SearchTypes = None) -> dict[str, [SearchTypes]]:
     limit: int = 300
     offset: int = 0
-    done: bool = False
     result: dict[str, [SearchTypes]] = {}
 
-    while not done:
+    while True:
         tmp_result: dict[str, [SearchTypes]] = session.search(
             query=needle, models=types_media, limit=limit, offset=offset
         )
-        tmp_done: bool = True
+
+        has_page_results: bool = False
 
         for key, value in tmp_result.items():
-            # Append pagination results, if there are any
-            if offset == 0:
-                result = tmp_result
-                tmp_done = False
-            elif bool(value):
-                result[key] += value
-                tmp_done = False
+            if key == "top_hit":
+                continue
 
-        # Next page
+            # init the list
+            if offset == 0:
+                result[key] = []
+
+            if isinstance(value, list) and value:
+                result[key].extend(value)
+                has_page_results = True
+
+        if not has_page_results:
+            break
+
         offset += limit
-        done = tmp_done
 
     return result
 
